@@ -1,22 +1,20 @@
 package edu.infnet.entity;
 
 public class Mensalista {
-    private String nome;
-    private int matricula;
+    private final String nome;
+    private final String matricula;
 
-    public String getNome() {
-        return nome;
+    public Mensalista(String matricula, String nome) {
+        this.matricula = matricula;
+        this.nome = nome;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return this.matricula;
     }
 
     @Override
     public String toString() {
-        return "Mensalista{" +
-                "nome='" + nome + '\'' +
-                ", matricula='" + matricula + '\'' +
-                '}';
+        return "Mensalista{" + "nome='" + nome + '\'' + ", matricula='" + matricula + '\'' + '}';
     }
 }

@@ -27,11 +27,11 @@ public class MensalistaController {
     }
 
     public static void getMensalistaById(Context ctx) {
-        int idMatricula = Integer.parseInt(ctx.pathParam("id"));
+        String idMatricula = ctx.pathParam("id");
         ctx.result("Detalhes do mensalista com ID: " + idMatricula);
 
         Mensalista mensalista = mensalistas.stream()
-                .filter(m -> m.getMatricula() == (idMatricula))
+                .filter(m -> m.getMatricula().equals(idMatricula))
                 .findFirst()
                 .orElse(null);
 
@@ -49,7 +49,7 @@ public class MensalistaController {
         Mensalista novoMensalista = gson.fromJson(body, Mensalista.class);
 
         boolean isDuplicateMatricula = mensalistas.stream()
-                .anyMatch(m -> m.getMatricula() == (novoMensalista.getMatricula()));
+                .anyMatch(m -> m.getMatricula().equals(novoMensalista.getMatricula()));
 
         if (isDuplicateMatricula) {
             ctx.result("Já existe um mensalista com a matrícula: " + novoMensalista.getMatricula());
